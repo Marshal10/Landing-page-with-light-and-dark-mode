@@ -32,11 +32,22 @@ function darkMode(){
 function toggleMode(e){
     if (e.target.checked){
         document.documentElement.setAttribute('data-theme','dark')
+        localStorage.setItem('theme','dark')
         darkMode()
     }else{
         document.documentElement.setAttribute('data-theme','light')
+        localStorage.setItem('theme','light')
         lightMode()
     }
 }
 
 chkBox.addEventListener("change",toggleMode)
+const currentTheme=localStorage.getItem('theme')
+
+if (currentTheme){
+    if (currentTheme=="dark"){
+        chkBox.checked=true
+        document.documentElement.setAttribute('data-theme','dark')
+        darkMode()
+    }
+}
